@@ -1,0 +1,80 @@
+{
+  "name": "google-globe-trends",
+  "description": "Create beautiful and interactive Google Trends globe visualizations with ease.",
+  "version": "0.1.0",
+  "keywords": [
+    "google",
+    "trends",
+    "react",
+    "three",
+    "threejs",
+    "three.js",
+    "webgl",
+    "visualization",
+    "interactive",
+    "globe",
+    "earth"
+  ],
+  "author": "Chris Zhou <christopher.r.zhou@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisrzhou/google-globe-trends.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisrzhou/google-globe-trends/issues"
+  },
+  "homepage": "https://google-globe-trends.netlify.com/",
+  "private": true,
+  "dependencies": {
+    "@types/react": "16.8.10",
+    "@types/react-dom": "16.8.3",
+    "@types/three": "^0.93.30",
+    "es6-tween": "^5.4.1",
+    "moment": "^2.24.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-globe": "^3.0.0",
+    "react-scripts": "2.1.8",
+    "react-spring": "^8.0.19",
+    "three": "^0.103.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "bundlesize": "^0.17.1",
+    "country-reverse-geocoding": "^0.2.2",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "google-trends-api": "^4.9.0",
+    "node-sass": "^4.11.0",
+    "prettier": "^1.16.4",
+    "typescript": "^3.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build:data": "yarn untrack:data && node ./scripts/build_data.js",
+    "build": "yarn clean && yarn build:data && react-scripts build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
+    "clean": "rm -rf build",
+    "size": "bundlesize",
+    "untrack:data": "git update-index --assume-unchanged ./src/_data/*"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "bundlesize": [
+    {
+      "path": "./build/*.js",
+      "maxSize": "1 MB"
+    }
+  ]
+}

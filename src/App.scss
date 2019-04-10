@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Ovo|Karla");
+
+$font-body-family: Karla, sans-serif;
+$font-body-color: #fcdcbf;
+$font-h1-size: 48px;
+$font-h2-size: 32px;
+$font-body-size: 16px;
+$font-header-family: Ovo, serif;
+$font-header-color: #ffffff;
+
+$background-color: rgba(0, 0, 0, 0.95);
+$container-background-color: #222222;
+$border-color: #fcdcbf;
+
+$media-phone-max-width: 320px;
+
+body {
+  * {
+    color: $font-body-color;
+    font-family: $font-body-family;
+    font-size: $font-body-size;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+  }
+  background: $background-color;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100vw;
+  @media only screen and (max-width: $media-phone-max-width) {
+    font-size: $font-body-size * 0.75;
+  }
+
+  a {
+    color: $font-body-color;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+    &:hover {
+      color: lighten($font-body-color, 10%);
+    }
+  }
+
+  p {
+    margin-block-end: 3em;
+    margin-block-start: 1em;
+  }
+
+  h1,
+  h2,
+  h6 {
+    color: $font-header-color;
+    font-family: $font-header-family;
+  }
+  h1 {
+    font-size: $font-h1-size;
+    @media only screen and (max-width: $media-phone-max-width) {
+      font-size: $font-h1-size * 0.75;
+    }
+  }
+  h2 {
+    font-size: $font-h2-size;
+    @media only screen and (max-width: $media-phone-max-width) {
+      font-size: $font-h2-size * 0.75;
+    }
+  }
+}
+
+.button {
+  background-color: $container-background-color;
+  border: 1px solid $border-color;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 8px 20px;
+  &:hover {
+    background-color: lighten($container-background-color, 10%);
+  }
+}
+
+.intro {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  justify-content: center;
+  position: fixed;
+  right: 0;
+  text-align: center;
+  top: 0;
+}
+
+.globe {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.interface {
+  .interface-header {
+    align-items: center;
+    background: $background-color;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    padding: 12px;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+}
+
+.about {
+  background: rgba(0, 0, 0, 0.95);
+  bottom: 0;
+  box-sizing: border-box;
+  left: 0;
+  overflow: auto;
+  padding: 48px 24px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  .about-content {
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+  }
+}
