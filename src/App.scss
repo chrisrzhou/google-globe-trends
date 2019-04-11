@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Ovo|Karla");
 
-$font-body-family: Karla, sans-serif;
-$font-body-color: #fcdcbf;
-$font-h1-size: 48px;
-$font-h2-size: 32px;
-$font-body-size: 16px;
-$font-header-family: Ovo, serif;
-$font-header-color: #ffffff;
+// scss variables
+$body-font-color: #fcdcbf;
+$body-font-family: Karla, sans-serif;
+$body-font-size: 16px;
+$h1-font-size: 48px;
+$h2-font-size: 32px;
+$header-font-color: #ffffff;
+$header-font-family: Ovo, serif;
+$small-font-size: 12px;
 
 $background-color: rgba(0, 0, 0, 0.95);
 $container-background-color: #222222;
@@ -14,31 +16,34 @@ $border-color: #fcdcbf;
 
 $media-phone-max-width: 320px;
 
+// basic dom styles
 body {
   * {
-    color: $font-body-color;
-    font-family: $font-body-family;
-    font-size: $font-body-size;
+    color: $body-font-color;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
     text-rendering: geometricPrecision;
     -webkit-font-smoothing: antialiased;
+    @media only screen and (max-width: $media-phone-max-width) {
+      font-size: $body-font-size * 0.75;
+    }
   }
+
   background: $background-color;
   height: 100vh;
   margin: 0;
   overflow: hidden;
   padding: 0;
   width: 100vw;
-  @media only screen and (max-width: $media-phone-max-width) {
-    font-size: $font-body-size * 0.75;
-  }
 
   a {
-    color: $font-body-color;
+    color: $body-font-color;
     cursor: pointer;
     font-weight: bold;
+    pointer-events: auto;
     text-decoration: underline;
     &:hover {
-      color: lighten($font-body-color, 10%);
+      color: lighten($body-font-color, 10%);
     }
   }
 
@@ -48,21 +53,21 @@ body {
   }
 
   h1,
-  h2,
-  h6 {
-    color: $font-header-color;
-    font-family: $font-header-family;
+  h2 {
+    color: $header-font-color;
+    font-family: $header-font-family;
+    margin: 8px 0;
   }
   h1 {
-    font-size: $font-h1-size;
+    font-size: $h1-font-size;
     @media only screen and (max-width: $media-phone-max-width) {
-      font-size: $font-h1-size * 0.75;
+      font-size: $h1-font-size * 0.75;
     }
   }
   h2 {
-    font-size: $font-h2-size;
+    font-size: $h2-font-size;
     @media only screen and (max-width: $media-phone-max-width) {
-      font-size: $font-h2-size * 0.75;
+      font-size: $h2-font-size * 0.5;
     }
   }
 }
@@ -71,24 +76,55 @@ body {
   background-color: $container-background-color;
   border: 1px solid $border-color;
   border-radius: 20px;
+  color: $body-font-color;
   cursor: pointer;
   padding: 8px 20px;
+  pointer-events: auto;
   &:hover {
     background-color: lighten($container-background-color, 10%);
   }
 }
 
-.intro {
-  align-items: center;
+// shared styles
+.fixed {
   bottom: 0;
-  display: flex;
-  flex-direction: column;
   left: 0;
-  justify-content: center;
+  pointer-events: none;
   position: fixed;
   right: 0;
-  text-align: center;
   top: 0;
+}
+
+.content {
+  max-width: 30vw;
+  position: absolute;
+  right: 15%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  @media only screen and (max-width: $media-phone-max-width) {
+    max-width: 50vw;
+    right: 24px;
+  }
+}
+
+.header {
+  padding: 12px 36px;
+  @media only screen and (max-width: $media-phone-max-width) {
+    padding: 12px;
+  }
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+// app styles
+.intro {
+  @extend .fixed;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .globe {
@@ -97,30 +133,28 @@ body {
   width: 100vw;
 }
 
-.interface {
-  .interface-header {
-    align-items: center;
-    background: $background-color;
-    display: flex;
-    justify-content: space-between;
-    left: 0;
-    padding: 12px;
-    position: fixed;
-    right: 0;
-    top: 0;
+.overlay {
+  @extend .fixed;
+
+  .overlay-subtitle {
+    @media only screen and (max-width: $media-phone-max-width) {
+      display: none;
+    }
   }
 }
 
+.details {
+  @extend .fixed;
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .about {
-  background: rgba(0, 0, 0, 0.95);
-  bottom: 0;
+  @extend .fixed;
+  background: $background-color;
   box-sizing: border-box;
-  left: 0;
   overflow: auto;
   padding: 48px 24px;
-  position: fixed;
-  right: 0;
-  top: 0;
+
   .about-content {
     margin: 0 auto;
     max-width: 600px;

@@ -16,7 +16,7 @@ function About({ onHide, shown }: Props): React.ReactElement {
         <h1>About</h1>
         <p>
           <Link value="GITHUB_REPO" label="Google Globe Trends" /> is a{' '}
-          <Link value="JAMSTACK" label="Jamstack" /> application built without
+          <Link value="JAMSTACK" label="JAMstack" /> application built without
           any server components. Data is fetched during build time using the{' '}
           <Link value="GOOGLE_TRENDS_API" label="google-trends-api" /> library.
           Globe visualizations are rendered using the{' '}
@@ -24,18 +24,18 @@ function About({ onHide, shown }: Props): React.ReactElement {
         </p>
         <p>
           This project is inspired by the wonderful{' '}
-          <Link value="METOO" label="#metoorising" /> project. With most
-          visualization features supported by{' '}
+          <Link value="METOO" label="#metoorising" /> project. With most of
+          interactive features supported by{' '}
           <Link value="REACT_GLOBE_GITHUB" label="react-globe" />, the project
-          aims to generalize and simplify building beautiful Google Trends globe
-          visualizations.
+          aims to simplify building beautiful globe visualizations with Google
+          Trends datasets.
         </p>
         <p>
-          To build your own Google Trends globe visualizations, you can click on
-          the <b>Deploy to Netlify</b> button below. You can edit and commit the{' '}
-          <Link value="CONFIG" label="config.js" /> file to customize trend
-          keywords and various visual settings. For additional information,
-          please visit to the <Link value="GITHUB_REPO" label="Github" /> page.
+          To build your own Google Trends globe visualizations, click on the{' '}
+          <b>Deploy to Netlify</b> button below. You can edit and commit the{' '}
+          <Link value="CONFIG" label="config.js" /> file to customize data and
+          globe options. For a detailed guide, please visit the{' '}
+          <Link value="GITHUB_REPO" label="Github" /> project page.
         </p>
         <p>
           <a href="https://app.netlify.com/start/deploy?repository=https://github.com/chrisrzhou/google-globe-trends">

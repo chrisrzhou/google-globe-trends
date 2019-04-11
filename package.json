@@ -27,6 +27,7 @@
   "homepage": "https://google-globe-trends.netlify.com/",
   "private": true,
   "dependencies": {
+    "@tippy.js/react": "^2.1.2",
     "@types/react": "16.8.10",
     "@types/react-dom": "16.8.3",
     "@types/three": "^0.93.30",

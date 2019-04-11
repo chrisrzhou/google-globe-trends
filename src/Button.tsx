@@ -2,7 +2,7 @@ import React from 'react';
 
 interface Props {
   label: string;
-  onClick: (event: React.MouseEvent) => void;
+  onClick?: (event: React.MouseEvent) => void;
 }
 
 function Button({ label, onClick }: Props): React.ReactElement {

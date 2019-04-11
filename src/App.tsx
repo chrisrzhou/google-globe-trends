@@ -2,22 +2,21 @@ import './App.scss';
 
 import React from 'react';
 
+import Detail from './Detail';
 import Globe from './Globe';
-import Interface from './Interface';
 import Intro from './Intro';
-import reducer, { initialState } from './reducer';
-
-const { useReducer } = React;
+import Overlay from './Overlay';
+import { initialState, reducer } from './state';
+import StateProvider from './StateProvider';
 
 function App(): React.ReactElement {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { start } = state;
   return (
-    <>
-      <Globe ready={start} />
-      <Intro dispatch={dispatch} shown={!start} />
-      <Interface />
-    </>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Globe />
+      <Intro />
+      <Overlay />
+      <Detail />
+    </StateProvider>
   );
 }
 
