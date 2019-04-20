@@ -6,6 +6,7 @@ export const initialState: State = {
   keyword: config.data.keyword,
   lastUpdated: data.lastUpdated,
   markers: data.trends,
+  relatedTopics: data.relatedTopics,
   start: false,
 };
 

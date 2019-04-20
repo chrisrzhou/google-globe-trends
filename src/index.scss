@@ -98,7 +98,7 @@ body {
 .content {
   max-width: 30vw;
   position: absolute;
-  right: 15%;
+  right: 10%;
   top: 50%;
   transform: translate(0%, -50%);
   @media only screen and (max-width: $media-phone-max-width) {
@@ -154,7 +154,14 @@ body {
 .details {
   @extend .fixed;
   padding: $spacing;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
+
+  .details-content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: $spacing * 2 0;
+  }
 }
 
 .about {

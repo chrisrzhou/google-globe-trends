@@ -6,11 +6,18 @@ export interface Marker {
   value: number;
 }
 
+export interface RelatedTopic {
+  link: string;
+  topic: string;
+  value: number;
+}
+
 export interface State {
   focusedMarker?: Marker;
   keyword: string;
   lastUpdated: number;
   markers: Marker[];
+  relatedTopics: { [key: string]: RelatedTopic[] };
   start: boolean;
 }
 

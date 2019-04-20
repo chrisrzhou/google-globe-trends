@@ -1,15 +1,10 @@
 import React from 'react';
 
-import Tippy from '@tippy.js/react';
-
 import { getRandomMarker } from '../state/selectors';
 import { useStateValue } from '../state/StateProvider';
 import { ActionType } from '../types';
 import Blur from './ui/Blur';
 import Button from './ui/Button';
-
-const TOOLTIP =
-  'Values are calculated on a scale from 0 to 100, where 100 is the location with the most popularity as a fraction of total searches in that location, a value of 50 indicates a location which is half as popular. A value of 0 indicates a location where there was not enough data for this term.';
 
 function getSearchURL(city: string, country: string, keyword: string): string {
   const formattedQuery = `${encodeURIComponent(city)}, ${encodeURIComponent(
@@ -25,8 +20,10 @@ function Details(): React.ReactElement {
   if (!focusedMarker) {
     return <div />;
   }
-  const { city, countryName, value } = focusedMarker;
+  const { city, countryCode, countryName, value } = focusedMarker;
   const url = getSearchURL(city, countryName, keyword);
+  const relatedTopics = state.relatedTopics[countryCode];
+  console.log(relatedTopics);
   return (
     <Blur className="details" config={{ friction: 50 }} shown={start}>
       <div className="header">
@@ -43,15 +40,25 @@ function Details(): React.ReactElement {
       </div>
       <div className="content">
         <h2>
-          {city}, {countryName}
+          {city}, {countryName} ({value})
         </h2>
-        <p>
-          <Tippy animation="scale" content={TOOLTIP}>
-            <a href="#">Score: {value}</a>
-          </Tippy>
-        </p>
-        <a href={url}>
-          <Button label="View all search results" />
+        <div className="details-content">
+          {relatedTopics.map(
+            ({ query, link }): React.ReactNode => {
+              return (
+                <a
+                  key={query}
+                  href={`https://trends.google.com${link}`}
+                  rel="noopener noreferrer"
+                  target="_blank">
+                  {query}
+                </a>
+              );
+            },
+          )}
+        </div>
+        <a href={url} rel="noopener noreferrer" target="_blank">
+          <Button label="View search results" />
         </a>
       </div>
     </Blur>
