@@ -23,8 +23,8 @@ To deploy your personal Google Globe Trends instance, click on the **Deploy to N
 To configure your instance, you should clone the Github repo and test locally:
 
 ```bash
-git clone git@github.com:chrisrzhou/MY_GOOGLE_GLOBE_TRENDS_INSTANCE.git
-cd google-globe-trends
+git clone git@github.com:MY_USER_NAME/MY_GOOGLE_GLOBE_TRENDS_INSTANCE.git
+cd MY_GOOGLE_GLOBE_TRENDS_INSTANCE
 yarn
 yarn start
 ```
@@ -37,7 +37,7 @@ You should now be able to test your changes locally with the `yarn start` comman
 
 ## Automate Data Updates
 
-A really cool thing about Netlify is the ability to use build hooks. This provides you with a unique URL that you can use to trigger rebuilding the site. You can find this in the **Build Hooks** section for your Netlify project (e.g. https://app.netlify.com/sites/MY_PROJECT_INSTANCE/settings/deploys). Go ahead and create a build hook and give it a meaningful name (e.g. `'daily-deploy'`).
+A really cool thing about Netlify is the ability to use build hooks. This provides you with a unique URL that you can use to trigger rebuilding the site. You can find this in the **Build Hooks** section for your Netlify project (e.g. https://app.netlify.com/sites/MY_GOOGLE_GLOBE_TRENDS_INSTANCE/settings/deploys). Go ahead and create a build hook and give it a meaningful name (e.g. `'daily-deploy'`).
 
 You can now ping this build hook URL to rebuild the site. Services such as [IFTTT][ifttt] or [Zapier][zapier] provide simple ways to automate and schedule simple jobs that you can use to hit the build hook URL. Below is an example of setting up an IFTTT applet that is scheduled to hit the build hook URL every midnight.
 
@@ -51,3 +51,11 @@ You can now ping this build hook URL to rebuild the site. Services such as [IFTT
 [metoorising]: https://metoorising.withgoogle.com/
 [ifttt]: https://ifttt.com
 [zapier]: https://zapier.com
+
+## Author's Notes
+
+Google Globe Trends is primarily meant to be an artistic and UI-focused experience to explore Google Trends data with an interactive React/ThreeJS globe. As a personal project, I wanted to learn how to abstract features and visual experiences in the [metoorising][metoorising] project into modular components. I also wanted to explore JAMStack techniques of automating and scheduling data updates at build time with IFTTT and web hooks. This project will probably not be actively updated and should serve as a template for other projects to draw ideas from!
+
+My projects will always be (ads-)free. I constantly learn from the community, so these projects are a way of giving back to the community. If you liked this project or find it useful, feel free to buy me a cup of coffee ☕️ through a small donation!
+
+[![paypal](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/chrisrzhou/5)
