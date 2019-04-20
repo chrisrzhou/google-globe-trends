@@ -39,7 +39,7 @@ function Overlay(): React.ReactElement {
         </div>
       </div>
       <div className="content">
-        Top 5 searching cities
+        TOP 5 SEARCHING CITIES
         {top5Markers.map(
           (marker): React.ReactNode => {
             return (

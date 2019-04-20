@@ -346,16 +346,12 @@ async function buildData({ keyword }) {
   };
 
   console.log('Writing data to file...');
-  fs.writeFile(
-    './src/_data/trends.json',
-    JSON.stringify(data, null, 2),
-    err => {
-      if (err) {
-        throw err;
-      }
-      console.log('Data file successfully saved!');
-    },
-  );
+  fs.writeFile('./src/_data.json', JSON.stringify(data, null, 2), err => {
+    if (err) {
+      throw err;
+    }
+    console.log('Data file successfully saved!');
+  });
 }
 
 buildData(config.data);

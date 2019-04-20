@@ -13,7 +13,8 @@
     "visualization",
     "interactive",
     "globe",
-    "earth"
+    "earth",
+    "netlify"
   ],
   "author": "Chris Zhou <christopher.r.zhou@gmail.com>",
   "license": "MIT",
@@ -60,7 +61,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
     "clean": "rm -rf build",
     "size": "bundlesize",
-    "untrack:data": "git update-index --assume-unchanged ./src/_data/*"
+    "untrack:data": "git update-index --assume-unchanged ./src/_data.json"
   },
   "eslintConfig": {
     "extends": "react-app"

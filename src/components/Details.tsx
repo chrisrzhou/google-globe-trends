@@ -43,15 +43,16 @@ function Details(): React.ReactElement {
           {city}, {countryName} ({value})
         </h2>
         <div className="details-content">
+          RELATED TOPICS
           {relatedTopics.map(
-            ({ query, link }): React.ReactNode => {
+            ({ topic, link }): React.ReactNode => {
               return (
                 <a
-                  key={query}
+                  key={topic}
                   href={`https://trends.google.com${link}`}
                   rel="noopener noreferrer"
                   target="_blank">
-                  {query}
+                  {topic}
                 </a>
               );
             },
