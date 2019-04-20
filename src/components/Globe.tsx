@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactGlobe from 'react-globe';
 
-import Blur from './Blur';
-import config from './config';
-import markerRenderer from './markerRenderer';
-import { getMarkers } from './state';
-import { useStateValue } from './StateProvider';
-import { ActionType } from './types';
+import config from '../config';
+import markerRenderer from '../markerRenderer';
+import { getMarkers } from '../state/selectors';
+import { useStateValue } from '../state/StateProvider';
+import { ActionType } from '../types';
+import Blur from './ui/Blur';
 
 const { cameraOptions, focusOptions, globeOptions, lightOptions } = config;
 

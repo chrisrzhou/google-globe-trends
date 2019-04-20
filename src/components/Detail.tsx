@@ -3,11 +3,11 @@ import React from 'react';
 
 import Tippy from '@tippy.js/react';
 
-import Blur from './Blur';
-import Button from './Button';
-import { getRandomMarker } from './state';
-import { useStateValue } from './StateProvider';
-import { ActionType } from './types';
+import { getRandomMarker } from '../state/selectors';
+import { useStateValue } from '../state/StateProvider';
+import { ActionType } from '../types';
+import Blur from './ui/Blur';
+import Button from './ui/Button';
 
 const TOOLTIP =
   'Values are calculated on a scale from 0 to 100, where 100 is the location with the most popularity as a fraction of total searches in that location, a value of 50 indicates a location which is half as popular. A value of 0 indicates a location where there was not enough data for this term.';

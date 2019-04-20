@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
+import { getTop5Markers } from '../state/selectors';
+import { useStateValue } from '../state/StateProvider';
+import { ActionType } from '../types';
 import About from './About';
-import Blur from './Blur';
-import Link from './Link';
-import { getTop5Markers } from './state';
-import { useStateValue } from './StateProvider';
-import { ActionType } from './types';
+import Blur from './ui/Blur';
+import Link from './ui/Link';
 
 function Overlay(): React.ReactElement {
   const [state, dispatch] = useStateValue();

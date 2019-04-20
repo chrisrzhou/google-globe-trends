@@ -11,7 +11,7 @@ const MARKER_COLOR = '#fcffbe';
 const MARKER_COMPANION_COLOR = '#fff9e6';
 
 export default function markerRenderer(marker: any): THREE.Object3D {
-  const size = Math.min(Math.max(marker.value / 10, 2), 5);
+  const size = Math.max(marker.value / 20, 1);
   const geometry = new THREE.SphereGeometry(size, 10, 10);
   const material = new THREE.MeshBasicMaterial({
     color: new THREE.Color(MARKER_COLOR),
@@ -25,9 +25,9 @@ export default function markerRenderer(marker: any): THREE.Object3D {
 
   // add companion markers based on size
   const companions: THREE.Mesh[] = [];
-  for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 10; i++) {
     const companionGeometry = new THREE.SphereGeometry(
-      Math.min((size * Math.random()) / 2, 3),
+      Math.min((size * Math.random()) / 2, 1),
       10,
       10,
     );
@@ -46,17 +46,17 @@ export default function markerRenderer(marker: any): THREE.Object3D {
         const from = {
           opacity: 0.1,
           position: companion.position.clone().toArray(),
-          scale: Math.max(0.3, Math.random()),
+          scale: Math.max(0.5, Math.random()),
         };
         const to = {
           opacity: 0.5,
-          position: [random(size * 5), random(size * 5), random(size)],
+          position: [random(size * 3), random(size * 3), random(size)],
           scale: 0.01,
         };
         const tween = new TWEEN.Tween(from)
-          .to(to, 3000)
+          .to(to, 4000)
           .easing(TWEEN.Easing.Quadratic.InOut)
-          .delay(i * 100);
+          .delay(i * 200);
         tween
           .on(
             'update',

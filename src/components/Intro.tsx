@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Blur from './Blur';
-import Button from './Button';
-import Link from './Link';
-import { useStateValue } from './StateProvider';
-import { ActionType } from './types';
+import { useStateValue } from '../state/StateProvider';
+import { ActionType } from '../types';
+import Blur from './ui/Blur';
+import Button from './ui/Button';
+import Link from './ui/Link';
 
 function Intro(): React.ReactElement {
   const [{ keyword, start }, dispatch] = useStateValue();

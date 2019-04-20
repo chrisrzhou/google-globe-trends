@@ -1,14 +1,3 @@
-export interface Data {
-  lastUpdated: number;
-  interestOverTime: {
-    time: number;
-    value: number;
-  }[];
-  trends: {
-    [key: number]: Marker[];
-  };
-}
-
 export interface Marker {
   city: string;
   coordinates: number[];
@@ -18,10 +7,10 @@ export interface Marker {
 }
 
 export interface State {
-  activeTime: number;
-  keyword: string;
-  data: Data;
   focusedMarker?: Marker;
+  keyword: string;
+  lastUpdated: number;
+  markers: Marker[];
   start: boolean;
 }
 

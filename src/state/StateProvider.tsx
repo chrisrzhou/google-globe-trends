@@ -8,7 +8,7 @@ export default function StateProvider<State, Action>({
   initialState,
   reducer,
 }: {
-  children: React.ReactElement[];
+  children: React.ReactElement;
   initialState: State;
   reducer: (state: State, action: Action) => State;
 }): React.ReactElement {

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Blur from './Blur';
-import Button from './Button';
-import Link from './Link';
+import Blur from './ui/Blur';
+import Button from './ui/Button';
+import Link from './ui/Link';
 
 interface Props {
   onHide: () => void;

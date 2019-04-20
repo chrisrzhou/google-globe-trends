@@ -4,7 +4,6 @@
 module.exports = {
   data: {
     keyword: 'game of thrones',
-    months: 12,
   },
   cameraOptions: {
     enableZoom: false,
