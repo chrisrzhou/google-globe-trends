@@ -1,4 +1,3 @@
-import moment from 'moment';
 import React from 'react';
 
 import Tippy from '@tippy.js/react';
@@ -12,48 +11,24 @@ import Button from './ui/Button';
 const TOOLTIP =
   'Values are calculated on a scale from 0 to 100, where 100 is the location with the most popularity as a fraction of total searches in that location, a value of 50 indicates a location which is half as popular. A value of 0 indicates a location where there was not enough data for this term.';
 
-function getSearchURL(
-  city: string,
-  country: string,
-  keyword: string,
-  startTime: number,
-  endTime: number,
-): string {
+function getSearchURL(city: string, country: string, keyword: string): string {
   const formattedQuery = `${encodeURIComponent(city)}, ${encodeURIComponent(
     country,
   )} ${encodeURIComponent(keyword)}`.replace(/(%20| )/g, '+');
-  const formattedStartTime = moment(startTime).format('MM/DD/YYYY');
-  const formattedEndTime = moment(endTime).format('MM/DD/YYYY');
-  return `https://www.google.com/search?q=${formattedQuery}&tbs=cdr:1,cd_min:${formattedStartTime},cd_max:${formattedEndTime}`;
+  return `https://www.google.com/search?q=${formattedQuery}`;
 }
 
-function Detail(): React.ReactElement {
+function Details(): React.ReactElement {
   const [state, dispatch] = useStateValue();
-  const { activeTime, keyword, start, focusedMarker } = state;
+  const { keyword, start, focusedMarker } = state;
   const randomMarker = getRandomMarker(state);
-  let city;
-  let countryName;
-  let value;
-  let url;
-  if (focusedMarker !== undefined) {
-    city = focusedMarker.city;
-    countryName = focusedMarker.countryName;
-    value = focusedMarker.value;
-    url = getSearchURL(
-      city,
-      countryName,
-      keyword,
-      activeTime,
-      moment(activeTime)
-        .add(1, 'week')
-        .valueOf(),
-    );
+  if (!focusedMarker) {
+    return <div />;
   }
+  const { city, countryName, value } = focusedMarker;
+  const url = getSearchURL(city, countryName, keyword);
   return (
-    <Blur
-      className="details"
-      config={{ friction: 50 }}
-      shown={start && focusedMarker}>
+    <Blur className="details" config={{ friction: 50 }} shown={start}>
       <div className="header">
         <Button
           label="Back to globe"
@@ -67,24 +42,20 @@ function Detail(): React.ReactElement {
         />
       </div>
       <div className="content">
-        <h1>
+        <h2>
           {city}, {countryName}
-        </h1>
-        <Tippy animation="scale" content={TOOLTIP}>
-          <p>
+        </h2>
+        <p>
+          <Tippy animation="scale" content={TOOLTIP}>
             <a href="#">Score: {value}</a>
-          </p>
-        </Tippy>
+          </Tippy>
+        </p>
         <a href={url}>
-          <Button
-            label={`See all search results from ${moment(activeTime).format(
-              'MMM YY',
-            )}`}
-          />
+          <Button label="View all search results" />
         </a>
       </div>
     </Blur>
   );
 }
 
-export default Detail;
+export default Details;

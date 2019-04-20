@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Detail from './Detail';
+import Details from './Details';
 import Globe from './Globe';
 import Intro from './Intro';
 import Overlay from './Overlay';
@@ -11,7 +11,7 @@ function App(): React.ReactElement {
       <Globe />
       <Intro />
       <Overlay />
-      <Detail />
+      <Details />
     </>
   );
 }

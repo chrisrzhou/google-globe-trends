@@ -1,6 +1,8 @@
 import * as TWEEN from 'es6-tween';
 import * as THREE from 'three';
 
+import { Marker } from './types';
+
 function random(scaleFactor: number): number {
   return Math.random() > 0.5
     ? scaleFactor * Math.random()
@@ -10,7 +12,7 @@ function random(scaleFactor: number): number {
 const MARKER_COLOR = '#fcffbe';
 const MARKER_COMPANION_COLOR = '#fff9e6';
 
-export default function markerRenderer(marker: any): THREE.Object3D {
+export default function markerRenderer(marker: Marker): THREE.Object3D {
   const size = Math.max(marker.value / 20, 1);
   const geometry = new THREE.SphereGeometry(size, 10, 10);
   const material = new THREE.MeshBasicMaterial({

@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useState } from 'react';
 
 import { getTop5Markers } from '../state/selectors';
@@ -10,9 +11,11 @@ import Link from './ui/Link';
 function Overlay(): React.ReactElement {
   const [state, dispatch] = useStateValue();
   const [showAbout, setShowAbout] = useState(false);
-  const { keyword, start, focusedMarker } = state;
+  const { keyword, lastUpdated, start, focusedMarker } = state;
   const top5Markers = getTop5Markers(state);
-  return (
+  return showAbout ? (
+    <About onHide={(): void => setShowAbout(false)} shown={showAbout} />
+  ) : (
     <Blur
       className="overlay"
       config={{ friction: 50 }}
@@ -52,7 +55,9 @@ function Overlay(): React.ReactElement {
           },
         )}
       </div>
-      <About onHide={(): void => setShowAbout(false)} shown={showAbout} />
+      <div className="footer">
+        Updated on {moment(lastUpdated).format('MMM D, YYYY')}
+      </div>
     </Blur>
   );
 }

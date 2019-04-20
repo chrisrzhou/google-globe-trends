@@ -13,7 +13,7 @@ function About({ onHide, shown }: Props): React.ReactElement {
   return (
     <Blur className="about" shown={shown}>
       <div className="about-content">
-        <h1>About</h1>
+        <h2>About</h2>
         <p>
           <Link value="GITHUB_REPO" label="Google Globe Trends" /> is a{' '}
           <Link value="JAMSTACK" label="JAMstack" /> application built without
@@ -31,11 +31,12 @@ function About({ onHide, shown }: Props): React.ReactElement {
           Trends datasets.
         </p>
         <p>
-          To build your own Google Trends globe visualizations, click on the{' '}
+          To deploy your own Google Globe Trends instances, click on the{' '}
           <b>Deploy to Netlify</b> button below. You can edit and commit the{' '}
           <Link value="CONFIG" label="config.js" /> file to customize data and
-          globe options. For a detailed guide, please visit the{' '}
-          <Link value="GITHUB_REPO" label="Github" /> project page.
+          globe options. Please visit the{' '}
+          <Link value="GITHUB_REPO" label="Github" /> project page for more
+          instructions on customizing instances.
         </p>
         <p>
           <a href="https://app.netlify.com/start/deploy?repository=https://github.com/chrisrzhou/google-globe-trends">

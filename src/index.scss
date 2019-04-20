@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Ovo|Karla");
 
-// scss variables
+// variables
 $body-font-color: #fcdcbf;
 $body-font-family: Karla, sans-serif;
 $body-font-size: 16px;
@@ -8,7 +8,7 @@ $h1-font-size: 48px;
 $h2-font-size: 32px;
 $header-font-color: #ffffff;
 $header-font-family: Ovo, serif;
-$small-font-size: 12px;
+$spacing: 12px;
 
 $background-color: rgba(0, 0, 0, 0.95);
 $container-background-color: #222222;
@@ -56,7 +56,7 @@ body {
   h2 {
     color: $header-font-color;
     font-family: $header-font-family;
-    margin: 8px 0;
+    margin: $spacing 0;
   }
   h1 {
     font-size: $h1-font-size;
@@ -75,10 +75,10 @@ body {
 .button {
   background-color: $container-background-color;
   border: 1px solid $border-color;
-  border-radius: 20px;
+  border-radius: $spacing * 2;
   color: $body-font-color;
   cursor: pointer;
-  padding: 8px 20px;
+  padding: $spacing $spacing * 2;
   pointer-events: auto;
   &:hover {
     background-color: lighten($container-background-color, 10%);
@@ -102,15 +102,15 @@ body {
   top: 50%;
   transform: translate(0%, -50%);
   @media only screen and (max-width: $media-phone-max-width) {
-    max-width: 50vw;
-    right: 24px;
+    max-width: 60vw;
+    right: $spacing * 2;
   }
 }
 
 .header {
-  padding: 12px 36px;
+  padding: $spacing $spacing * 3;
   @media only screen and (max-width: $media-phone-max-width) {
-    padding: 12px;
+    padding: $spacing;
   }
   align-items: center;
   display: flex;
@@ -143,8 +143,17 @@ body {
   }
 }
 
+.footer {
+  @extend .fixed;
+  bottom: $spacing;
+  left: auto;
+  right: $spacing;
+  top: auto;
+}
+
 .details {
   @extend .fixed;
+  padding: $spacing;
   background: rgba(0, 0, 0, 0.3);
 }
 
@@ -153,7 +162,8 @@ body {
   background: $background-color;
   box-sizing: border-box;
   overflow: auto;
-  padding: 48px 24px;
+  padding: $spacing * 4 $spacing * 2;
+  pointer-events: auto;
 
   .about-content {
     margin: 0 auto;

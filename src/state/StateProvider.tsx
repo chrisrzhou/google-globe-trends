@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 
-// need help typing this
+import { Action, State } from '../types';
+
 const StateContext = createContext<any>(null);
 
 export default function StateProvider<State, Action>({
@@ -19,7 +20,6 @@ export default function StateProvider<State, Action>({
   );
 }
 
-// need help typing this
-export function useStateValue(): [any, any] {
+export function useStateValue(): [State, React.Dispatch<Action>] {
   return useContext(StateContext);
 }
