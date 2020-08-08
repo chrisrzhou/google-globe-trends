@@ -1,8 +1,11 @@
 import fs from 'fs';
-const googleTrends = require('google-trends-api');
-const moment = require('moment');
-const config = require('../config');
-const reverseGeocode = require('country-reverse-geocoding').country_reverse_geocoding();
+import googleTrends from 'google-trends-api';
+import moment from 'moment';
+import countryReverseGeoCoding from 'country-reverse-geocoding';
+
+import config from '../config';
+
+const reverseGeocode = countryReverseGeoCoding.country_reverse_geocoding();
 
 const ISO_3_TO_2 = {
   AFG: 'AF',
@@ -255,84 +258,81 @@ const ISO_3_TO_2 = {
 };
 
 async function wait(ms) {
-  return new Promise(resolve => {
-    setTimeout(resolve, ms);
-  });
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 async function getRelatedTopics({ keyword, geo }) {
-  console.log(`Getting related topics for "${keyword}" in "${geo}"`);
+  console.log(`Getting related topics for "${keyword.join(', ')}" in "${geo}"`);
   return googleTrends
     .relatedTopics({ keyword, geo })
-    .then(response => {
-      const parsed = JSON.parse(response);
+    .then((response) => {
       let relatedTopics = [];
-      if (parsed && parsed.default && parsed.default.rankedList) {
-        const rankedList =
-          parsed.default.rankedList[0] &&
-          parsed.default.rankedList[0].rankedKeyword;
-        if (rankedList.length > 0) {
-          relatedTopics = rankedList
-            .map(d => ({
-              link: d.link,
-              topic: d.topic.title,
-              value: d.value,
-            }))
-            .sort((a, b) => b.value - a.value)
-            .slice(0, 10);
-        }
+      const rankedList = JSON.parse(response)?.default?.rankedList[0]
+        ?.rankedKeyword;
+      if (rankedList) {
+        relatedTopics = rankedList
+          .map((d) => ({
+            link: d.link,
+            topic: d.topic.title,
+            value: d.value,
+          }))
+          .sort((a, b) => b.value - a.value)
+          .slice(0, 10);
       }
       return relatedTopics;
     })
-    .catch(err => console.error(err));
+    .catch(console.error);
 }
 
 async function getTrends({ keyword }) {
-  console.log(`Getting trends for "${keyword}" `);
+  console.log(`Getting trends for "${keyword.join(', ')}" `);
   return googleTrends
     .interestByRegion({
       keyword,
       resolution: 'city',
     })
-    .then(response => {
-      const parsed = JSON.parse(response);
+    .then((response) => {
       const trends = [];
-      if (parsed && parsed.default && parsed.default.geoMapData) {
-        parsed.default.geoMapData.forEach(async d => {
-          const { lat, lng } = d.coordinates;
+      const geoMapData = JSON.parse(response)?.default?.geoMapData;
+      if (geoMapData) {
+        geoMapData.forEach((d) => {
+          const { coordinates, geoName, value } = d;
+          const { lat, lng } = coordinates;
           const country = reverseGeocode.get_country(lat, lng);
-          if (country && ISO_3_TO_2[country.code]) {
-            const countryCode = ISO_3_TO_2[country.code];
+          const countryCode = ISO_3_TO_2[country?.code];
+          if (countryCode) {
             trends.push({
               id: countryCode,
-              city: d.geoName,
+              city: geoName,
               countryCode,
               countryName: country.name,
               coordinates: [lat, lng],
-              value: d.value[0],
+              value: value[0],
             });
           }
         });
       }
       return trends;
     })
-    .catch(err => console.error(err));
+    .catch(console.error);
 }
 
 async function buildData({ keyword }) {
   const trends = await getTrends({ keyword });
 
   const relatedTopics = {};
-  for (let i = 0; i < trends.length; i++) {
-    const { countryCode } = trends[i];
-    if (countryCode) {
-      if (!relatedTopics[countryCode]) {
-        await wait(500); // wait/throttle 500ms
-        relatedTopics[countryCode] = await getRelatedTopics({
-          keyword,
-          geo: countryCode,
-        });
-      }
+  for (const trend of trends) {
+    const { countryCode } = trend;
+    if (countryCode && !relatedTopics[countryCode]) {
+      await wait(500); // wait/throttle 500ms
+      const test = await getRelatedTopics({
+        keyword,
+        geo: countryCode,
+      });
+      relatedTopics[countryCode] = await getRelatedTopics({
+        keyword,
+        geo: countryCode,
+      });
     }
   }
 
@@ -348,7 +348,7 @@ async function buildData({ keyword }) {
   };
 
   console.log('Writing data to file...');
-  fs.writeFile('./src/data/data.json', JSON.stringify(data, null, 2), err => {
+  fs.writeFile('./src/data/data.json', JSON.stringify(data, null, 2), (err) => {
     if (err) {
       throw err;
     }

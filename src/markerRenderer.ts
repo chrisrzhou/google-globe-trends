@@ -75,6 +75,7 @@ export default function markerRenderer(marker: Marker): THREE.Object3D {
           companion.position.set(x, y, z);
         },
         onEnd: animate,
+        delay: i * 200,
       });
     }
     animate();

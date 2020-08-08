@@ -1,7 +1,7 @@
 // Update this file to customize trend data and globe UI
 module.exports = {
   data: {
-    keyword: ['covid', 'covid19', 'coronavirus'],
+    keyword: ['covid', 'coronavirus'],
   },
   globeBackgroundTexture:
     'https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png',

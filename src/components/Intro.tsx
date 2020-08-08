@@ -12,7 +12,7 @@ function Intro(): React.ReactElement {
     <Blur className="intro" config={{ friction: 50 }} shown={!start}>
       <h1>Google Globe Trends</h1>
       <p>
-        Visualizing <b>{`"${keyword.join(', ')}"`}</b> Google Trends with{' '}
+        Visualizing <b>{`"${keyword}"`}</b> Google Trends with{' '}
         <Link value="REACT_GLOBE_GITHUB" label="react-globe" />
       </p>
       <Button

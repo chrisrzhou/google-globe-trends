@@ -24,7 +24,7 @@ function Overlay(): React.ReactElement {
         <div>
           <h2>Google Globe Trends</h2>
           <div className="overlay-subtitle">
-            Visualizing <b>{`"${keyword}"`}</b> Google Trends with{' '}
+            Visualizing <b>{`"${keyword.join(', ')}"`}</b> Google Trends with{' '}
             <Link value="REACT_GLOBE_GITHUB" label="react-globe" />
           </div>
         </div>
