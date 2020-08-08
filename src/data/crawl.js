@@ -348,7 +348,7 @@ async function buildData({ keyword }) {
   };
 
   console.log('Writing data to file...');
-  fs.writeFile('./src/_data.json', JSON.stringify(data, null, 2), err => {
+  fs.writeFile('./data.json', JSON.stringify(data, null, 2), err => {
     if (err) {
       throw err;
     }

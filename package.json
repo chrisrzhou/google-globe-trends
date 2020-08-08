@@ -24,13 +24,12 @@
     "jamstack"
   ],
   "scripts": {
-    "start": "react-scripts start",
-    "build:data": "npm run untrack:data && node ./scripts/build_data.js",
-    "build": "npm run clean && npm run build:data && react-scripts build",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
+    "crawl": "npm run untrack:data && babel-node ./src/data/crawl.js",
+    "build": "npm run clean && npm run crawl:data && react-scripts build",
     "clean": "rm -rf build",
-    "size": "bundlesize",
-    "untrack:data": "git update-index --assume-unchanged ./src/_data.json"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
+    "start": "react-scripts start",
+    "untrack": "git update-index --assume-unchanged ./src/data/data.json"
   },
   "dependencies": {
     "moment": "^2.24.0",
@@ -42,6 +41,9 @@
     "three": "^0.119.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
     "@types/react": "^16.9.45",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
@@ -56,6 +58,11 @@
     "prettier": "^1.17.0",
     "prop-types": "^15.7.2",
     "typescript": "^3.4.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
