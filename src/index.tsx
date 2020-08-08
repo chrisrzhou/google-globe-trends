@@ -1,11 +1,11 @@
-import './index.scss';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import { initialState, reducer } from './state';
 import StateProvider from './state/StateProvider';
+
+import './index.scss';
 
 function Root(): React.ReactElement {
   return (

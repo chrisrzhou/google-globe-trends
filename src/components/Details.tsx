@@ -6,10 +6,14 @@ import { ActionType } from '../types';
 import Blur from './ui/Blur';
 import Button from './ui/Button';
 
-function getSearchURL(city: string, country: string, keyword: string): string {
+function getSearchURL(
+  city: string,
+  country: string,
+  keyword: string[],
+): string {
   const formattedQuery = `${encodeURIComponent(city)}, ${encodeURIComponent(
     country,
-  )} ${encodeURIComponent(keyword)}`.replace(/(%20| )/g, '+');
+  )} ${encodeURIComponent(keyword.join('|'))}`.replace(/(%20| )/g, '+');
   return `https://www.google.com/search?q=${formattedQuery}`;
 }
 
@@ -22,8 +26,7 @@ function Details(): React.ReactElement {
   }
   const { city, countryCode, countryName, value } = focusedMarker;
   const url = getSearchURL(city, countryName, keyword);
-  const relatedTopics = state.relatedTopics[countryCode];
-  console.log(relatedTopics);
+  const relatedTopics = state.relatedTopics[countryCode] || [];
   return (
     <Blur className="details" config={{ friction: 50 }} shown={start}>
       <div className="header">

@@ -1,37 +1,46 @@
 import React from 'react';
-import ReactGlobe from 'react-globe';
+import ReactGlobe, { Coordinates, Marker, Options } from 'react-globe';
 
 import config from '../config';
 import markerRenderer from '../markerRenderer';
 import { useStateValue } from '../state/StateProvider';
-import { ActionType, Marker } from '../types';
 import Blur from './ui/Blur';
+import { ActionType } from '../types';
 
-const { cameraOptions, focusOptions, globeOptions, lightOptions } = config;
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
 
 const markerOptions = {
-  enableTooltip: true,
-  getTooltipContent: (marker: Marker): string =>
+  markerTooltipRenderer: (marker: Marker): string =>
     `${marker.city} (${marker.value})`,
-  renderer: markerRenderer,
+  markerRenderer,
 };
+
+const options = {
+  ...config.options,
+  ...markerOptions,
+} as Options;
 
 function Globe(): React.ReactElement {
   const [state, dispatch] = useStateValue();
   const { focusedMarker, start } = state;
+  // @ts-ignore
   const markers = start ? state.markers : [];
   const focus =
     focusedMarker !== undefined ? focusedMarker.coordinates : undefined;
   return (
     <Blur className="globe" config={{ friction: 150 }} shown={true}>
       <ReactGlobe
-        cameraOptions={cameraOptions}
-        focus={focus}
-        focusOptions={focusOptions}
-        globeOptions={globeOptions}
-        lightOptions={lightOptions}
+        globeBackgroundTexture={config.globeBackgroundTexture}
+        globeCloudsTexture={config.globeCloudsTexture}
+        globeTexture={config.globeTexture}
+        height="100vh"
+        initialCameraDistanceRadiusScale={3.5}
+        focus={focus as Coordinates}
+        // @ts-ignore
         markers={markers}
-        markerOptions={markerOptions}
+        width="100vw"
+        options={options}
         onClickMarker={(marker: Marker): void =>
           dispatch({ type: ActionType.Focus, payload: marker })
         }

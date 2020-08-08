@@ -1,48 +1,51 @@
 {
+  "private": true,
   "name": "google-globe-trends",
+  "version": "1.0.0",
   "description": "Create beautiful and interactive Google Trends globe visualizations with ease.",
-  "version": "0.1.0",
+  "license": "MIT",
+  "homepage": "https://google-globe-trends.netlify.com/",
+  "repository": "chrisrzhou/google-globe-trends",
+  "bugs": "https://github.com/chrisrzhou/google-globe-trends/issues",
+  "author": "Chris Zhou <chrisrzhou@pm.me> (https://chrisrzhou.io)",
   "keywords": [
     "google",
+    "globe",
     "trends",
+    "react-globe",
     "react",
     "three",
     "threejs",
-    "three.js",
     "webgl",
     "visualization",
     "interactive",
-    "globe",
     "earth",
-    "netlify"
+    "netlify",
+    "jamstack"
   ],
-  "author": "Chris Zhou <christopher.r.zhou@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chrisrzhou/google-globe-trends.git"
+  "scripts": {
+    "start": "react-scripts start",
+    "build:data": "npm run untrack:data && node ./scripts/build_data.js",
+    "build": "npm run clean && npm run build:data && react-scripts build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
+    "clean": "rm -rf build",
+    "size": "bundlesize",
+    "untrack:data": "git update-index --assume-unchanged ./src/_data.json"
   },
-  "bugs": {
-    "url": "https://github.com/chrisrzhou/google-globe-trends/issues"
-  },
-  "homepage": "https://google-globe-trends.netlify.com/",
-  "private": true,
   "dependencies": {
-    "@types/react": "16.8.14",
-    "@types/react-dom": "16.8.4",
-    "es6-tween": "^5.4.3",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-globe": "^3.0.0",
+    "react-globe": "^5.0.0",
     "react-scripts": "2.1.8",
     "react-spring": "^8.0.19",
-    "three": "^0.103.0"
+    "three": "^0.119.1"
   },
   "devDependencies": {
+    "@types/react": "^16.9.45",
+    "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
-    "bundlesize": "^0.17.1",
     "country-reverse-geocoding": "^0.2.2",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
@@ -54,15 +57,6 @@
     "prop-types": "^15.7.2",
     "typescript": "^3.4.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build:data": "yarn untrack:data && node ./scripts/build_data.js",
-    "build": "yarn clean && yarn build:data && react-scripts build",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
-    "clean": "rm -rf build",
-    "size": "bundlesize",
-    "untrack:data": "git update-index --assume-unchanged ./src/_data.json"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -71,11 +65,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "bundlesize": [
-    {
-      "path": "./build/*.js",
-      "maxSize": "1 MB"
-    }
   ]
 }

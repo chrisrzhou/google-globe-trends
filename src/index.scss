@@ -127,12 +127,6 @@ body {
   text-align: center;
 }
 
-.globe {
-  height: 100vh;
-  overflow: hidden;
-  width: 100vw;
-}
-
 .overlay {
   @extend .fixed;
 

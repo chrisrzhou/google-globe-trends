@@ -1,4 +1,5 @@
 export interface Marker {
+  id: string;
   city: string;
   coordinates: number[];
   countryCode: string;
@@ -14,7 +15,7 @@ export interface RelatedTopic {
 
 export interface State {
   focusedMarker?: Marker;
-  keyword: string;
+  keyword: string[];
   lastUpdated: number;
   markers: Marker[];
   relatedTopics: { [key: string]: RelatedTopic[] };

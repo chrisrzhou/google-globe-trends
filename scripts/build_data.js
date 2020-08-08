@@ -302,9 +302,11 @@ async function getTrends({ keyword }) {
           const { lat, lng } = d.coordinates;
           const country = reverseGeocode.get_country(lat, lng);
           if (country && ISO_3_TO_2[country.code]) {
+            const countryCode = ISO_3_TO_2[country.code]
             trends.push({
+              id: countryCode,
               city: d.geoName,
-              countryCode: ISO_3_TO_2[country.code],
+              countryCode,
               countryName: country.name,
               coordinates: [lat, lng],
               value: d.value[0],
