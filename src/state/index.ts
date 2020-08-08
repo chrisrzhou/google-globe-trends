@@ -1,4 +1,4 @@
-import data from '../_data.json';
+import data from '../data/data.json';
 import config from '../config';
 import { Action, ActionType, State } from '../types';
 

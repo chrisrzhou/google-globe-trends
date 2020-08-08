@@ -1,7 +1,7 @@
 import fs from 'fs';
 const googleTrends = require('google-trends-api');
 const moment = require('moment');
-const config = require('../src/config');
+const config = require('../config');
 const reverseGeocode = require('country-reverse-geocoding').country_reverse_geocoding();
 
 const ISO_3_TO_2 = {
@@ -302,7 +302,7 @@ async function getTrends({ keyword }) {
           const { lat, lng } = d.coordinates;
           const country = reverseGeocode.get_country(lat, lng);
           if (country && ISO_3_TO_2[country.code]) {
-            const countryCode = ISO_3_TO_2[country.code]
+            const countryCode = ISO_3_TO_2[country.code];
             trends.push({
               id: countryCode,
               city: d.geoName,
@@ -348,7 +348,7 @@ async function buildData({ keyword }) {
   };
 
   console.log('Writing data to file...');
-  fs.writeFile('./data.json', JSON.stringify(data, null, 2), err => {
+  fs.writeFile('./src/data/data.json', JSON.stringify(data, null, 2), err => {
     if (err) {
       throw err;
     }

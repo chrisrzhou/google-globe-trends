@@ -24,8 +24,8 @@
     "jamstack"
   ],
   "scripts": {
-    "crawl": "npm run untrack:data && babel-node ./src/data/crawl.js",
-    "build": "npm run clean && npm run crawl:data && react-scripts build",
+    "crawl": "npm run untrack && babel-node ./src/data/crawl.js",
+    "build": "npm run clean && npm run crawl && react-scripts build",
     "clean": "rm -rf build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
     "start": "react-scripts start",
