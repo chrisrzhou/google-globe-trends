@@ -5,7 +5,7 @@ import Globe from './globe';
 import Intro from './intro';
 import Overlay from './overlay';
 
-function App() {
+export default function App() {
   return (
     <>
       <Globe />
@@ -15,5 +15,3 @@ function App() {
     </>
   );
 }
-
-export default App;

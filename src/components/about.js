@@ -4,7 +4,7 @@ import Button from './button';
 import Fade from './fade';
 import Link from './link';
 
-function About({ onHide, show }) {
+export default function About({ onHide, show }) {
   return (
     <Fade className="about" show={show}>
       <div className="about-content">
@@ -45,5 +45,3 @@ function About({ onHide, show }) {
     </Fade>
   );
 }
-
-export default About;

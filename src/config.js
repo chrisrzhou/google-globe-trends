@@ -1,6 +1,6 @@
 // Update this file to customize trend data and globe properties
 export default {
-  keyword: ['covid', 'covid19', 'coronavirus'],
+  keyword: 'covid + covid19 + coronavirus', // https://support.google.com/trends/answer/4359582?hl=en
   globeBackgroundTexture:
     'https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png',
   globeCloudsTexture:
@@ -14,6 +14,7 @@ export default {
     cameraRotateSpeed: 0.2,
     enableCameraZoom: false,
     enableDefocus: false,
+    focusAnimationDuration: 1000,
     globeCloudsOpacity: 0.1,
     globeGlowCoefficient: 0.1,
     globeGlowColor: 'red',

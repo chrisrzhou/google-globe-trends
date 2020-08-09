@@ -12,7 +12,7 @@ const links = {
   REACT_GLOBE_GITHUB: 'https://github.com/chrisrzhou/react-globe',
 };
 
-function Link({ children, className, link, onClick }) {
+export default function Link({ children, className, link, onClick }) {
   const hasLink = links[link] && !onClick;
   return (
     <a
@@ -25,5 +25,3 @@ function Link({ children, className, link, onClick }) {
     </a>
   );
 }
-
-export default Link;

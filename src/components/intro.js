@@ -5,7 +5,7 @@ import Button from './button';
 import Description from './description';
 import Fade from './fade';
 
-function Intro() {
+export default function Intro() {
   const [{ start }, dispatch] = useStateValue();
 
   return (
@@ -18,5 +18,3 @@ function Intro() {
     </Fade>
   );
 }
-
-export default Intro;

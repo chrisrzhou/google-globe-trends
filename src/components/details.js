@@ -7,7 +7,7 @@ import Fade from './fade';
 function getSearchUrl(city, country, keyword) {
   const formattedQuery = `${encodeURIComponent(city)}, ${encodeURIComponent(
     country,
-  )} ${encodeURIComponent(keyword.join('|'))}`.replace(/(%20| )/g, '+');
+  )} ${encodeURIComponent(keyword)}`.replace(/(%20| )/g, '+');
   return `https://www.google.com/search?q=${formattedQuery}`;
 }
 
@@ -18,9 +18,9 @@ export function getRandomMarker({ focusedMarker, markers }) {
   return filteredMarkers[Math.floor(Math.random() * filteredMarkers.length)];
 }
 
-function Details() {
+export default function Details() {
   const [
-    { config, start, focusedMarker, markers, relatedTopics },
+    { config, focusedMarker, markers, relatedTopics },
     dispatch,
   ] = useStateValue();
   const randomMarker = getRandomMarker({ focusedMarker, markers });
@@ -70,10 +70,8 @@ function Details() {
   }
 
   return (
-    <Fade className="details" show={start}>
+    <Fade className="details" show={focusedMarker}>
       {content}
     </Fade>
   );
 }
-
-export default Details;

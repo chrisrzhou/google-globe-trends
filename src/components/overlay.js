@@ -7,7 +7,7 @@ import Description from './description';
 import Fade from './fade';
 import Link from './link';
 
-function Overlay() {
+export default function Overlay() {
   const [
     { focusedMarker, lastUpdated, markers, start },
     dispatch,
@@ -51,5 +51,3 @@ function Overlay() {
     </>
   );
 }
-
-export default Overlay;

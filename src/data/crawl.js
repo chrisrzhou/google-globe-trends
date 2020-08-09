@@ -266,7 +266,7 @@ async function wait(ms) {
 }
 
 async function getRelatedTopics({ keyword, geo }) {
-  console.log(`Getting related topics for "${keyword.join(', ')}" in "${geo}"`);
+  console.log(`Getting related topics for "${keyword}" in "${geo}"`);
   return googleTrends
     .relatedTopics({ keyword, geo })
     .then((response) => {
@@ -289,7 +289,7 @@ async function getRelatedTopics({ keyword, geo }) {
 }
 
 async function getTrends({ keyword }) {
-  console.log(`Getting trends for "${keyword.join(', ')}" `);
+  console.log(`Getting trends for "${keyword}" `);
   return googleTrends
     .interestByRegion({
       keyword,
@@ -306,7 +306,7 @@ async function getTrends({ keyword }) {
           const countryCode = ISO_3_TO_2[country?.code];
           if (countryCode) {
             trends.push({
-              id: countryCode,
+              id: `${lat}-${lng}`,
               city: geoName,
               countryCode,
               countryName: country.name,

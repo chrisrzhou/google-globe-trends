@@ -18,9 +18,11 @@ $media-phone-max-width: 320px;
 // keyframes
 @keyframes fade-in {
   0% {
+    filter: blur(10px);
     opacity: 0;
   }
   100% {
+    filter: blur(0px);
     opacity: 1;
   }
 }

@@ -87,7 +87,7 @@ function markerRenderer(marker) {
   return mesh;
 }
 
-function Globe() {
+export default function Globe() {
   const [{ config, focusedMarker, markers, start }, dispatch] = useStateValue();
 
   const {
@@ -98,7 +98,7 @@ function Globe() {
   } = config;
 
   return (
-    <Fade show className="globe" durationMs={8000}>
+    <Fade show durationMs={3000}>
       <ReactGlobe
         globeBackgroundTexture={globeBackgroundTexture}
         globeCloudsTexture={globeCloudsTexture}
@@ -120,5 +120,3 @@ function Globe() {
     </Fade>
   );
 }
-
-export default Globe;

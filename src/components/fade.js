@@ -1,32 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Fade({ children, className, durationMs, show }) {
-  const [shouldRender, setShouldRender] = useState(show);
+export default function Fade({ children, className, durationMs = 800, show }) {
+  const [shouldRender, setRender] = useState(show);
 
   useEffect(() => {
     if (show) {
-      setShouldRender(true);
+      setRender(true);
     }
   }, [show]);
 
-  const onAnimationEnd = () => {
+  function onAnimationEnd() {
     if (!show) {
-      setShouldRender(false);
+      setRender(false);
     }
-  };
+  }
+
+  const animationKeyFrame = show ? 'fade-in' : 'fade-out';
 
   if (!shouldRender) {
     return null;
   }
 
-  const animation = `${
-    show ? 'fade-in' : 'fade-out'
-  } ${durationMs}ms ease-in-out`;
-
   return (
     <div
       className={className}
-      style={{ animation }}
+      style={{ animation: `${animationKeyFrame} ${durationMs}ms` }}
       onAnimationEnd={onAnimationEnd}>
       {children}
     </div>
