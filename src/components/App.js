@@ -5,7 +5,7 @@ import Globe from './Globe';
 import Intro from './Intro';
 import Overlay from './Overlay';
 
-function App(): React.ReactElement {
+function App() {
   return (
     <>
       <Globe />

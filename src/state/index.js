@@ -1,8 +1,7 @@
 import data from '../data/data.json';
 import config from '../config';
-import { Action, ActionType, State } from '../types';
 
-export const initialState: State = {
+export const initialState = {
   keyword: config.data.keyword,
   lastUpdated: data.lastUpdated,
   markers: data.trends,
@@ -10,15 +9,15 @@ export const initialState: State = {
   start: false,
 };
 
-export function reducer(state: State, action: Action): State {
+export function reducer(state, action) {
   const { type } = action;
   switch (type) {
-    case ActionType.Start:
+    case 'START':
       return {
         ...state,
         start: true,
       };
-    case ActionType.Focus:
+    case 'FOCUS':
       return {
         ...state,
         focusedMarker: action.payload,

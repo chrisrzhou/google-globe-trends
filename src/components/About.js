@@ -1,17 +1,12 @@
 import React from 'react';
 
-import Blur from './ui/Blur';
-import Button from './ui/Button';
-import Link from './ui/Link';
+import Fade from './Fade';
+import Button from './Button';
+import Link from './Link';
 
-interface Props {
-  onHide: () => void;
-  shown: boolean;
-}
-
-function About({ onHide, shown }: Props): React.ReactElement {
+function About({ onHide, shown }) {
   return (
-    <Blur className="about" shown={shown}>
+    <Fade className="about" shown={shown}>
       <div className="about-content">
         <h2>About</h2>
         <p>
@@ -48,7 +43,7 @@ function About({ onHide, shown }: Props): React.ReactElement {
         </p>
         <Button label="Back" onClick={onHide} />
       </div>
-    </Blur>
+    </Fade>
   );
 }
 

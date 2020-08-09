@@ -27,7 +27,7 @@
     "crawl": "npm run untrack && babel-node ./src/data/crawl.js",
     "build": "npm run clean && npm run crawl && react-scripts build",
     "clean": "rm -rf build",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx, --fix src",
+    "lint": "eslint --fix .",
     "start": "react-scripts start",
     "untrack": "git update-index --assume-unchanged ./src/data/data.json"
   },
@@ -40,7 +40,6 @@
     "react-dom": "^16.8.6",
     "react-globe": "^5.0.1",
     "react-scripts": "3.4.1",
-    "react-spring": "^8.0.19",
     "three": "^0.119.1",
     "typescript": "^3.4.4"
   },

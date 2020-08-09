@@ -10,18 +10,7 @@ const links = {
   REACT_GLOBE_GITHUB: 'https://github.com/chrisrzhou/react-globe',
 };
 
-interface Props {
-  value:
-    | 'CONFIG'
-    | 'GITHUB_REPO'
-    | 'GOOGLE_TRENDS_API'
-    | 'METOO'
-    | 'JAMSTACK'
-    | 'REACT_GLOBE_GITHUB';
-  label: string;
-}
-
-function Link({ value, label }: Props): React.ReactElement {
+function Link({ value, label }) {
   return (
     <a href={links[value]} rel="noopener noreferrer" target="_blank">
       {label}

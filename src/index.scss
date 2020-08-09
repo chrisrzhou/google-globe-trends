@@ -16,6 +16,25 @@ $border-color: #fcdcbf;
 
 $media-phone-max-width: 320px;
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+}
+
+
 // basic dom styles
 body {
   * {

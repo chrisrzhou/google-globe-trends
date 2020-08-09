@@ -1,7 +1,7 @@
-// Update this file to customize trend data and globe UI
-module.exports = {
+// Update this file to customize trend data and globe properties
+export default {
   data: {
-    keyword: ['covid', 'coronavirus'],
+    keyword: ['covid', 'covid19', 'coronavirus'],
   },
   globeBackgroundTexture:
     'https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png',
@@ -13,7 +13,7 @@ module.exports = {
     ambientLightColor: '#b34444',
     ambientLightIntensity: 1,
     cameraAutoRotateSpeed: 0.01,
-    cameraRotateSpeed: 0.02,
+    cameraRotateSpeed: 0.2,
     enableCameraZoom: false,
     enableDefocus: false,
     globeCloudsOpacity: 0.1,

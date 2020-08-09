@@ -325,10 +325,6 @@ async function buildData({ keyword }) {
     const { countryCode } = trend;
     if (countryCode && !relatedTopics[countryCode]) {
       await wait(500); // wait/throttle 500ms
-      const test = await getRelatedTopics({
-        keyword,
-        geo: countryCode,
-      });
       relatedTopics[countryCode] = await getRelatedTopics({
         keyword,
         geo: countryCode,

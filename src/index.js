@@ -7,7 +7,7 @@ import StateProvider from './state/StateProvider';
 
 import './index.scss';
 
-function Root(): React.ReactElement {
+function Root() {
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
       <App />
