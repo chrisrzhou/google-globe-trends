@@ -1,27 +1,36 @@
 import React from 'react';
 
-import { getRandomMarker } from '../state/selectors';
-import { useStateValue } from '../state/StateProvider';
-import Fade from './Fade';
-import Button from './Button';
+import { useStateValue } from '../state';
+import Button from './button';
+import Fade from './fade';
 
-function getSearchURL(city, country, keyword) {
+function getSearchUrl(city, country, keyword) {
   const formattedQuery = `${encodeURIComponent(city)}, ${encodeURIComponent(
     country,
   )} ${encodeURIComponent(keyword.join('|'))}`.replace(/(%20| )/g, '+');
   return `https://www.google.com/search?q=${formattedQuery}`;
 }
 
+export function getRandomMarker({ focusedMarker, markers }) {
+  const filteredMarkers = markers.filter((marker) => {
+    return marker.id !== focusedMarker?.id;
+  });
+  return filteredMarkers[Math.floor(Math.random() * filteredMarkers.length)];
+}
+
 function Details() {
-  const [state, dispatch] = useStateValue();
-  const { keyword, start, focusedMarker } = state;
-  const randomMarker = getRandomMarker(state);
+  const [
+    { config, start, focusedMarker, markers, relatedTopics },
+    dispatch,
+  ] = useStateValue();
+  const randomMarker = getRandomMarker({ focusedMarker, markers });
 
   let content;
   if (focusedMarker) {
     const { city, countryCode, countryName, value } = focusedMarker;
-    const url = getSearchURL(city, countryName, keyword);
-    const relatedTopics = state.relatedTopics[countryCode] || [];
+    const url = getSearchUrl(city, countryName, config.keyword);
+    const topics = relatedTopics[countryCode] || [];
+
     content = (
       <>
         <div className="header">
@@ -40,7 +49,7 @@ function Details() {
           </h2>
           <div className="details-content">
             RELATED TOPICS
-            {relatedTopics.map(({ topic, link }) => {
+            {topics.map(({ topic, link }) => {
               return (
                 <a
                   key={topic}
@@ -61,7 +70,7 @@ function Details() {
   }
 
   return (
-    <Fade className="details" shown={start}>
+    <Fade className="details" show={start}>
       {content}
     </Fade>
   );

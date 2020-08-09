@@ -1,21 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Ovo|Karla");
 
 // variables
+$background-color: rgba(0, 0, 0, 0.95);
 $body-font-color: #fcdcbf;
 $body-font-family: Karla, sans-serif;
 $body-font-size: 16px;
+$border-color: #fcdcbf;
+$container-background-color: #222222;
+$darken-background-color: rgba(0, 0, 0, 0.05);
 $h1-font-size: 48px;
 $h2-font-size: 32px;
 $header-font-color: #ffffff;
 $header-font-family: Ovo, serif;
 $spacing: 12px;
-
-$background-color: rgba(0, 0, 0, 0.95);
-$container-background-color: #222222;
-$border-color: #fcdcbf;
-
 $media-phone-max-width: 320px;
 
+// keyframes
 @keyframes fade-in {
   0% {
     opacity: 0;
@@ -29,13 +29,12 @@ $media-phone-max-width: 320px;
   0% {
     opacity: 1;
   }
-  25% {
+  100% {
     opacity: 0;
   }
 }
 
-
-// basic dom styles
+// dom styles
 body {
   * {
     color: $body-font-color;
@@ -56,11 +55,9 @@ body {
   width: 100vw;
 
   a {
-    color: $body-font-color;
     cursor: pointer;
     font-weight: bold;
     pointer-events: auto;
-    text-decoration: underline;
     &:hover {
       color: lighten($body-font-color, 10%);
     }
@@ -114,69 +111,11 @@ body {
   top: 0;
 }
 
-.content {
-  max-width: 30vw;
-  position: absolute;
-  right: 10%;
-  top: 50%;
-  transform: translate(0%, -50%);
-  @media only screen and (max-width: $media-phone-max-width) {
-    max-width: 60vw;
-    right: $spacing * 2;
-  }
-}
-
-.header {
-  padding: $spacing $spacing * 3;
-  @media only screen and (max-width: $media-phone-max-width) {
-    padding: $spacing;
-  }
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+.nudge-right {
+  margin-right: 24px;
 }
 
 // app styles
-.intro {
-  @extend .fixed;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.overlay {
-  @extend .fixed;
-
-  .overlay-subtitle {
-    @media only screen and (max-width: $media-phone-max-width) {
-      display: none;
-    }
-  }
-}
-
-.footer {
-  @extend .fixed;
-  bottom: $spacing;
-  left: auto;
-  right: $spacing;
-  top: auto;
-}
-
-.details {
-  @extend .fixed;
-  padding: $spacing;
-  background: rgba(0, 0, 0, 0.4);
-
-  .details-content {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    margin: $spacing * 2 0;
-  }
-}
-
 .about {
   @extend .fixed;
   background: $background-color;
@@ -189,5 +128,66 @@ body {
     margin: 0 auto;
     max-width: 600px;
     text-align: center;
+  }
+}
+
+.content {
+  max-width: 30vw;
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  @media only screen and (max-width: $media-phone-max-width) {
+    max-width: 60vw;
+    right: $spacing * 2;
+  }
+}
+
+.details {
+  @extend .fixed;
+  background: $darken-background-color;
+  padding: $spacing;
+
+  .details-content {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: $spacing * 2 0;
+  }
+}
+
+.footer {
+  @extend .fixed;
+  bottom: $spacing;
+  left: auto;
+  right: $spacing;
+  top: auto;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: $spacing $spacing * 3;
+  @media only screen and (max-width: $media-phone-max-width) {
+    padding: $spacing;
+  }
+}
+
+.intro {
+  @extend .fixed;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.overlay {
+  @extend .fixed;
+  .overlay-subtitle {
+    @media only screen and (max-width: $media-phone-max-width) {
+      display: none;
+    }
   }
 }

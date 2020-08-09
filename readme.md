@@ -31,7 +31,7 @@ npm install && npm start
 
 You can configure the globe visuals (e.g. globe texture, glow color, zoom behaviors) by editing the [`config.js`](./src/config.js) file. For more resources on how to configure these options, please refer to the `react-globe` [docs][react-globe-docs].
 
-If you would like to render the Google Trends of another keyword, simply change the `data.keyword` field of the config file. To apply changes to the data, run the `npm run build:data` command.
+If you would like to render the Google Trends of another keyword, simply change the `keyword` field of the config file. To apply changes to the data, run the `npm run build:data` command.
 
 You should now be able to test your changes locally with the `npm start` command. If they look good, you can commit the changes to your Github repo, and Netlify will redeploy the instance with these updates automatically!
 

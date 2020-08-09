@@ -1,7 +1,7 @@
+import countryReverseGeoCoding from 'country-reverse-geocoding';
 import fs from 'fs';
 import googleTrends from 'google-trends-api';
 import moment from 'moment';
-import countryReverseGeoCoding from 'country-reverse-geocoding';
 
 import config from '../config';
 
@@ -257,6 +257,10 @@ const ISO_3_TO_2 = {
   ZWE: 'ZW',
 };
 
+function sortNumericDescending(a, b) {
+  return b.value - a.value;
+}
+
 async function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -276,7 +280,7 @@ async function getRelatedTopics({ keyword, geo }) {
             topic: d.topic.title,
             value: d.value,
           }))
-          .sort((a, b) => b.value - a.value)
+          .sort(sortNumericDescending)
           .slice(0, 10);
       }
       return relatedTopics;
@@ -312,12 +316,12 @@ async function getTrends({ keyword }) {
           }
         });
       }
-      return trends;
+      return trends.sort(sortNumericDescending);
     })
     .catch(console.error);
 }
 
-async function buildData({ keyword }) {
+async function buildData(keyword) {
   const trends = await getTrends({ keyword });
 
   const relatedTopics = {};
@@ -339,6 +343,7 @@ async function buildData({ keyword }) {
 
   const data = {
     lastUpdated: moment().valueOf(),
+    keyword,
     relatedTopics,
     trends,
   };
@@ -352,4 +357,4 @@ async function buildData({ keyword }) {
   });
 }
 
-buildData(config.data);
+buildData(config.keyword);

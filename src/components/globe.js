@@ -2,9 +2,8 @@ import React from 'react';
 import ReactGlobe, { tween } from 'react-globe';
 import * as THREE from 'three';
 
-import config from '../config';
-import { useStateValue } from '../state/StateProvider';
-import Fade from './Fade';
+import { useStateValue } from '../state';
+import Fade from './fade';
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
@@ -88,30 +87,35 @@ function markerRenderer(marker) {
   return mesh;
 }
 
-const options = {
-  ...config.options,
-  markerTooltipRenderer: (marker) => `${marker.city} (${marker.value})`,
-  markerRenderer,
-};
-
 function Globe() {
-  const [state, dispatch] = useStateValue();
-  const { focusedMarker, start } = state;
-  const markers = start ? state.markers : [];
-  const focus =
-    focusedMarker !== undefined ? focusedMarker.coordinates : undefined;
+  const [{ config, focusedMarker, markers, start }, dispatch] = useStateValue();
+
+  const {
+    globeBackgroundTexture,
+    globeCloudsTexture,
+    globeTexture,
+    options,
+  } = config;
+
   return (
-    <Fade className="globe" shown={true}>
+    <Fade show className="globe" durationMs={8000}>
       <ReactGlobe
-        globeBackgroundTexture={config.globeBackgroundTexture}
-        globeCloudsTexture={config.globeCloudsTexture}
-        globeTexture={config.globeTexture}
+        globeBackgroundTexture={globeBackgroundTexture}
+        globeCloudsTexture={globeCloudsTexture}
+        globeTexture={globeTexture}
         height="100vh"
-        focus={focus}
-        markers={markers}
+        focus={focusedMarker?.coordinates}
+        markers={start ? markers : []}
         width="100vw"
-        options={options}
-        onClickMarker={(marker) => dispatch({ type: 'FOCUS', payload: marker })}
+        options={{
+          ...options,
+          enableCameraRotate: start && !focusedMarker,
+          markerTooltipRenderer: (marker) => `${marker.city} (${marker.value})`,
+          markerRenderer,
+        }}
+        onClickMarker={(marker) => {
+          dispatch({ type: 'FOCUS', payload: marker });
+        }}
       />
     </Fade>
   );

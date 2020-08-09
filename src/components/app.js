@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Details from './Details';
-import Globe from './Globe';
-import Intro from './Intro';
-import Overlay from './Overlay';
+import Details from './details';
+import Globe from './globe';
+import Intro from './intro';
+import Overlay from './overlay';
 
 function App() {
   return (
