@@ -1,6 +1,10 @@
-// Update this file to customize trend data and globe properties
+/**
+ * Update this file to customize trend data.
+ * Google Trends: https://support.google.com/trends/answer/4359582?hl=enand globe properties
+ * react-globe: https://github.com/chrisrzhou/react-globe
+ */
 export default {
-  keyword: 'covid + covid19 + coronavirus', // https://support.google.com/trends/answer/4359582?hl=en
+  keyword: 'covid + covid19 + coronavirus',
   globeBackgroundTexture:
     'https://raw.githubusercontent.com/chrisrzhou/react-globe/main/textures/background.png',
   globeCloudsTexture:

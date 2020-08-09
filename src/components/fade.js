@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-export default function Fade({ children, className, durationMs = 800, show }) {
+export default function Fade({
+  animationDuration = 800,
+  children,
+  className,
+  show,
+}) {
   const [shouldRender, setRender] = useState(show);
 
   useEffect(() => {
@@ -24,7 +29,9 @@ export default function Fade({ children, className, durationMs = 800, show }) {
   return (
     <div
       className={className}
-      style={{ animation: `${animationKeyFrame} ${durationMs}ms` }}
+      style={{
+        animation: `${animationKeyFrame} ${animationDuration}ms ease-in-out`,
+      }}
       onAnimationEnd={onAnimationEnd}>
       {children}
     </div>

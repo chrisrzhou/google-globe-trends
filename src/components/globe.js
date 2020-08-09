@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactGlobe, { tween } from 'react-globe';
 import * as THREE from 'three';
 
@@ -88,35 +88,72 @@ function markerRenderer(marker) {
 }
 
 export default function Globe() {
-  const [{ config, focusedMarker, markers, start }, dispatch] = useStateValue();
+  const [
+    hasGlobeBackgroundTextureLoaded,
+    setHasGlobeBackgroundTextureLoaded,
+  ] = useState(false);
+  const [
+    hasGlobeCloudsTextureLoaded,
+    setHasGlobeCloudsTextureLoaded,
+  ] = useState(false);
+  const [hasGlobeTextureLoaded, setHasGlobeTextureLoaded] = useState(false);
+  const [
+    { config, focusedMarker, hasLoaded, markers, start },
+    dispatch,
+  ] = useStateValue();
 
-  const {
-    globeBackgroundTexture,
-    globeCloudsTexture,
-    globeTexture,
-    options,
-  } = config;
+  useEffect(() => {
+    if (
+      hasGlobeBackgroundTextureLoaded &&
+      hasGlobeCloudsTextureLoaded &&
+      hasGlobeTextureLoaded
+    ) {
+      dispatch({ type: 'LOADED' });
+    }
+  }, [
+    dispatch,
+    hasGlobeBackgroundTextureLoaded,
+    hasGlobeCloudsTextureLoaded,
+    hasGlobeTextureLoaded,
+  ]);
+
+  const { globeBackgroundTexture, globeCloudsTexture, globeTexture } = config;
+
+  const isFocusing = focusedMarker;
+
+  const options = {
+    ...config.options,
+    enableGlobeGlow: !isFocusing,
+    enableCameraRotate: start && !isFocusing,
+    markerTooltipRenderer: (marker) => `${marker.city} (${marker.value})`,
+    markerRenderer,
+  };
 
   return (
-    <Fade show durationMs={3000}>
-      <ReactGlobe
-        globeBackgroundTexture={globeBackgroundTexture}
-        globeCloudsTexture={globeCloudsTexture}
-        globeTexture={globeTexture}
-        height="100vh"
-        focus={focusedMarker?.coordinates}
-        markers={start ? markers : []}
-        width="100vw"
-        options={{
-          ...options,
-          enableCameraRotate: start && !focusedMarker,
-          markerTooltipRenderer: (marker) => `${marker.city} (${marker.value})`,
-          markerRenderer,
-        }}
-        onClickMarker={(marker) => {
-          dispatch({ type: 'FOCUS', payload: marker });
-        }}
-      />
-    </Fade>
+    <>
+      <div className={hasLoaded ? undefined : 'hidden'}>
+        <ReactGlobe
+          globeBackgroundTexture={globeBackgroundTexture}
+          globeCloudsTexture={globeCloudsTexture}
+          globeTexture={globeTexture}
+          height="100vh"
+          focus={focusedMarker?.coordinates}
+          markers={start ? markers : []}
+          width="100vw"
+          options={options}
+          onClickMarker={(marker) => {
+            dispatch({ type: 'FOCUS', payload: marker });
+          }}
+          onGlobeTextureLoaded={() => setHasGlobeTextureLoaded(true)}
+          onGlobeBackgroundTextureLoaded={() =>
+            setHasGlobeBackgroundTextureLoaded(true)
+          }
+          onGlobeCloudsTextureLoaded={() =>
+            setHasGlobeCloudsTextureLoaded(true)
+          }
+        />
+      </div>
+      <Fade animationDuration={3000} className="cover" show={!hasLoaded} />
+    </>
   );
 }

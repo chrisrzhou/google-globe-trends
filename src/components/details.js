@@ -61,9 +61,10 @@ export default function Details() {
               );
             })}
           </div>
-          <a href={url} rel="noopener noreferrer" target="_blank">
-            View search results
-          </a>
+          <Button
+            label="View search results"
+            onClick={() => window.open(url, '_blank')}
+          />
         </div>
       </>
     );

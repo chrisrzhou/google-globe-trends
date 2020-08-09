@@ -145,6 +145,11 @@ body {
   }
 }
 
+.cover {
+  @extend .fixed;
+  background-color: $background-color;
+}
+
 .details {
   @extend .fixed;
   background: $darken-background-color;
@@ -174,6 +179,10 @@ body {
   @media only screen and (max-width: $media-phone-max-width) {
     padding: $spacing;
   }
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .intro {

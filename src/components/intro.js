@@ -6,7 +6,7 @@ import Description from './description';
 import Fade from './fade';
 
 export default function Intro() {
-  const [{ start }, dispatch] = useStateValue();
+  const [{ hasLoaded, start }, dispatch] = useStateValue();
 
   return (
     <Fade className="intro" show={!start}>
@@ -14,7 +14,9 @@ export default function Intro() {
       <p>
         <Description />
       </p>
-      <Button label="Explore" onClick={() => dispatch({ type: 'START' })} />
+      <Fade show={hasLoaded}>
+        <Button label="Explore" onClick={() => dispatch({ type: 'START' })} />
+      </Fade>
     </Fade>
   );
 }

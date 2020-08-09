@@ -8,6 +8,7 @@ const { lastUpdated, relatedTopics, trends } = data;
 export const initialState = {
   config,
   focusedMarker: null,
+  hasLoaded: false,
   lastUpdated,
   markers: trends,
   relatedTopics,
@@ -17,6 +18,11 @@ export const initialState = {
 export function reducer(state, action) {
   const { payload, type } = action;
   switch (type) {
+    case 'LOADED':
+      return {
+        ...state,
+        hasLoaded: true,
+      };
     case 'START':
       return {
         ...state,
